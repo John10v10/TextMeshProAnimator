@@ -1,0 +1,201 @@
+
+<!-- saved from url=(0079)file:///C:/Users/jbcJo/Documents/LiveDigitalPuppetAnimator/Assets/TMPAHelp.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><title>TextMeshPro Animator</title></head>
+<body>
+	<h1>TextMesh Pro Animator</h1>
+	<h2>by John10v10 and Meorge</h2>
+	<h3>Help Guide of October 4th, 2018</h3>
+	
+	<p>
+		This help guide will walk you through how to use the animator addon for TextMeshPro.
+	</p>
+	<br>
+	<p>
+		So far there are three different types of effects that you can apply to TextMeshPro:
+		</p><ul>
+			<li><img src="./TextMeshPro_Animator_Help_Guide_files/shakeExample.gif" height="144px"></li>
+			<li><img src="./TextMeshPro_Animator_Help_Guide_files/waveExample.gif" height="144px"></li>
+			<li><img src="./TextMeshPro_Animator_Help_Guide_files/wiggleExample.gif" height="144px"></li>
+		</ul>
+		More features are planned to be requested and added in future versions.
+		Please let me know immediately if you have suggestions, requests, or bug reports. -John10v10
+	<p></p>
+	<h2>How to Use</h2>
+	<p>
+		What you want to do is drag the "TextMeshAnimator.cs" script onto the gameObject that contains the "Text Mesh Pro UGUI (Script)" component. 
+	</p>
+	<img src="./TextMeshPro_Animator_Help_Guide_files/Screenshot_0.png">
+	<br>
+	<p>
+		After inserting the component, you should see this in the gameObject's inspector:
+	</p>
+	<img src="./TextMeshPro_Animator_Help_Guide_files/Screenshot_1.png">
+	<h3>TMP Text or Custom Text</h3>
+	<p>
+	In TextMeshPro, you can assign text to the main inspector panel. However, if you want to provide custom text in the TMP Animator script, you may do so by checking the box "Custom Text" and s text area control will appear in the panel.
+	</p>
+	<img src="./TextMeshPro_Animator_Help_Guide_files/CustomTextCheckExample.gif">
+	<p>
+	Custom text will be parsed and assigned to the actual text of TextMeshPro component when the game starts. This is useful for when you want to visualize what the final text will look like. One example is whether you're in game mode or edit mode, you can type text in the "Custom Text" text area, press update, and it will show you the parsed result.
+	</p>
+	<img src="./TextMeshPro_Animator_Help_Guide_files/CustomTextUpdateExample.gif">
+	<p><b>TextMeshPro Animator does not support '&lt;' or '&gt;' displays because they are what are used for defining tags.</b></p>
+	<h2>Tags</h2>
+	<p>
+		As you may have noticed in the last visual, I only used one tag. Unlike xml, these tags do not require a following closing tag such as "&lt;tag&gt;&lt;/tag&gt;". Tags also support multiple commands within them.<br><code>&lt;effectType effectType2 modifier=5.0 Independency&gt;My Text</code><br>
+	</p>
+	<h2>Effects</h2>
+	<h3>Shake</h3>
+	<p>
+		The shake effect can be applied to the text by adding the &lt;shake&gt; tag right before the text you wish to shake.
+	</p>
+	<code>I am &lt;shake&gt;SHAKING!!!</code><br>
+	<img src="./TextMeshPro_Animator_Help_Guide_files/ShakingExample1.gif">
+	<p>
+		You can terminate the shake effect by adding the &lt;/shake&gt; tag right after the text you wish to discontinue shaking.
+	</p>
+	<code>I am &lt;shake&gt;SHAKING&lt;/shake&gt; somewhat?</code><br>
+	<img src="./TextMeshPro_Animator_Help_Guide_files/ShakingExample2.gif">
+	<p>
+		You can take advantage of where to place these opening and closing tags.
+	</p>
+	<code>This is o&lt;shake&gt;d&lt;/shake&gt;dly st&lt;shake&gt;range...</code><br>
+	<img src="./TextMeshPro_Animator_Help_Guide_files/ShakingExample3.gif">
+	<p>
+		Now let's talk about the modifiers of this shake effect. The shake effect supports two different modifiers:
+		</p><ul>
+			<li>
+				<h4>Intensity</h4>
+				<p>Defines how massive the shake is. The modifier is written as "Intensity=0" and is not case sensitive. Negative values are not allowed. Invalid value characters result in a fine of $50 minimum... Psst HA HA I'm joking of course. Invalid value characters result in an error. This example should show you how to use it in a tag:</p>
+				<code>I &lt;shake Intensity=0.25&gt;feel &lt;shake INTENSITY=0.1&gt;so &lt;shake intensity=1&gt;weird...</code><br>
+				<img src="./TextMeshPro_Animator_Help_Guide_files/ShakingExample4.gif">
+			</li>
+			<li>
+				<h4>Independency</h4>
+				<p>Defines whether the text will shake by vertices, characters, words, or if the whole will shake as one whole. The modifier is literally written as either "Vertex", "Character", "Word", or "United" and is not case sensitive. This example should show you how to use it in a tag:</p>
+				<code>&lt;shake WORD&gt;Bippity &lt;shake CHARACTER&gt;Boppity &lt;shake VERTEX&gt;Boo</code><br>
+				<img src="./TextMeshPro_Animator_Help_Guide_files/ShakingExample5.gif">
+			</li>
+		</ul>
+	<p></p>
+	<p>
+	You can also assign modifiers inspectorly. The inspector values will be multiplied by the values specified in the tags. If the values are not specified by tags, they will use the inspector values directly.<br>
+	The shake Independency value requires the text to be updated. You can update it by clicking "Update".
+	</p>
+	<img src="./TextMeshPro_Animator_Help_Guide_files/ShakingExample6.gif">
+	<h3>Wave</h3>
+	<p>
+		The wave effect can be applied to the text by adding the &lt;wave&gt; tag right before the text you wish to wave up and down.
+	</p>
+	<code>&lt;wave&gt;God Bless America</code><br>
+	<img src="./TextMeshPro_Animator_Help_Guide_files/WavingExample1.gif">
+	<p>
+		You can terminate the wave effect by adding the &lt;/wave&gt; tag right after the text you wish to discontinue waving.
+	</p>
+	<code>King Boo says "&lt;wave&gt;OOOH&lt;/wave&gt;" to haunt Luigi.</code><br>
+	<img src="./TextMeshPro_Animator_Help_Guide_files/WavingExample2.gif">
+	<p>
+		You can take advantage of where to place these opening and closing tags.
+	</p>
+	<code>This is o&lt;wave&gt;d&lt;/wave&gt;dly st&lt;wave&gt;range...</code><br>
+	<img src="./TextMeshPro_Animator_Help_Guide_files/WavingExample3.gif">
+	<p>
+		Now let's talk about the modifiers of this wave effect. The wave effect supports four different modifiers:
+		</p><ul>
+			<li>
+				<h4>Intensity</h4>
+				<p>Defines how high the text waves up and down. The modifier is written as "Intensity=0" and is not case sensitive. Negative values are not allowed. Invalid value characters result in an error. This example should show you how to use it in a tag:</p>
+				<code>I &lt;wave Intensity=0.5&gt;feel &lt;wave INTENSITY=0.1&gt;so &lt;wave intensity=1&gt;weird...</code><br>
+				<img src="./TextMeshPro_Animator_Help_Guide_files/WavingExample4.gif">
+			</li>
+			<li>
+				<h4>Speed</h4>
+				<p>Defines how fast the text waves up and down. The modifier is written as "Speed=0" and is not case sensitive. Negative values are not allowed. Invalid value characters result in an error. This example should show you how to use it in a tag:</p>
+				<code>&lt;wave speed=0.25&gt;I am &lt;wave speed=1&gt;speed!!!</code><br>
+				<img src="./TextMeshPro_Animator_Help_Guide_files/WavingExample5.gif">
+			</li>
+			<li>
+				<h4>Separation</h4>
+				<p>Defines how far apart each independency delays eachother, resulting in how wide the wave looks. The modifier is written as "Separation=0" and is not case sensitive. Negative values are not allowed. Invalid value characters result in an error. This example should show you how to use it in a tag:</p>
+				<code>Sometimes, &lt;wave separation=1&gt;I can get... &lt;wave separation=0.25&gt;FUNY! &lt;wave speed=4 separation=0.1&gt;:D</code><br>
+				<img src="./TextMeshPro_Animator_Help_Guide_files/WavingExample6.gif">
+			</li>
+			<li>
+				<h4>Independency</h4>
+				<p>Defines whether the text will wave by vertices, characters, words, or if the whole will move up and down as one stiff whole. The modifier is literally written as either "Vertex", "Character", "Word", or "United" and is not case sensitive. This example should show you how to use it in a tag:</p>
+				<code>&lt;wave WORD&gt;Bippity &lt;wave CHARACTER&gt;Boppity &lt;wave VERTEX&gt;Boo</code><br>
+				<img src="./TextMeshPro_Animator_Help_Guide_files/WavingExample7.gif">
+			</li>
+		</ul>
+	<p></p>
+	<p>
+	You can also assign modifiers inspectorly. The inspector values will be multiplied by the values specified in the tags. If the values are not specified by tags, they will use the inspector values directly.<br>
+	The wave Independency value requires the text to be updated. You can update it by clicking "Update".
+	</p>
+	<img src="./TextMeshPro_Animator_Help_Guide_files/WavingExample8.gif">
+	<h3>Wiggle</h3>
+	<p>
+		The wiggle effect can be applied to the text by adding the &lt;wiggle&gt; tag right before the text you wish to wiggle.
+		You may think that this is like the shake effect. The wiggle effect is a little more advanced and smooth. Not gonna lie though, they are very similar and the wiggle effect can substitute for the shake effect.
+	</p>
+	<code>&lt;wiggle&gt;The Wiggles</code><br>
+	<img src="./TextMeshPro_Animator_Help_Guide_files/WigglingExample1.gif">
+	<p>
+		You can terminate the wiggle effect by adding the &lt;/wiggle&gt; tag right after the text you wish to discontinue wiggling.
+	</p>
+	<code>&lt;wiggle&gt;Wiggle wiggle wiggle wiggle wiggle!&lt;/wiggle&gt; Yeah!</code><br>
+	<img src="./TextMeshPro_Animator_Help_Guide_files/WigglingExample2.gif">
+	<p>
+		You can take advantage of where to place these opening and closing tags.
+	</p>
+	<code>This is o&lt;wiggle&gt;d&lt;/wiggle&gt;dly st&lt;wiggle&gt;range...</code><br>
+	<img src="./TextMeshPro_Animator_Help_Guide_files/WigglingExample3.gif">
+	<p>
+		Now let's talk about the modifiers of this wiggle effect. The wiggle effect supports four different modifiers:
+		</p><ul>
+			<li>
+				<h4>Intensity</h4>
+				<p>Defines how far out the text wiggles around. The modifier is written as "Intensity=0" and is not case sensitive. Negative values are not allowed. Invalid value characters result in a penalty of you having to wiggle in front of me in humilation. Lol, that was just another tease... <i>STOP IT WITH YOUR DUMB PENALTY JOKES! They're getting annoying.</i> As normal, invalid value characters cause an error. This example should show you how to use it in a tag:</p>
+				<code>I &lt;wiggle Intensity=0.5&gt;feel &lt;wiggle INTENSITY=0.1&gt;so &lt;wiggle intensity=1&gt;weird...</code><br>
+				<img src="./TextMeshPro_Animator_Help_Guide_files/WigglingExample4.gif">
+			</li>
+			<li>
+				<h4>Speed</h4>
+				<p>Defines how fast the text wiggles. The modifier is written as "Speed=0" and is not case sensitive. Negative values are not allowed. Invalid value characters result in an error. This example should show you how to use it in a tag:</p>
+				<code>&lt;wiggle speed=0.25&gt;I wiggle. :) &lt;wiggle speed=1&gt;I wiggle faster!!! :D</code><br>
+				<img src="./TextMeshPro_Animator_Help_Guide_files/WigglingExample5.gif">
+			</li>
+			<li>
+				<h4>Minimum Duration</h4>
+				<p>Defines how smooth the text wiggles. The modifier is not written in tags but rather instead defined directly from the inspector variable. The higher the value, the steadier the wiggle, but the more likely to make the wiggle seem more machinacial. The lower the value, the glitchier the wiggle looks, but brings more dynamic to the effect. I suggest placing the value somewhere in between 0.5 and 0.9 to make it look a lot more natural of a wiggle effect there. This example should show you how to use it in the inspector</p>
+				<img src="./TextMeshPro_Animator_Help_Guide_files/WigglingExample6.gif">
+			</li>
+			<li>
+				<h4>Independency</h4>
+				<p>Defines whether the text will wiggle by vertices, characters, words, or if the whole will move up and down as one stiff whole. The modifier is literally written as either "Vertex", "Character", "Word", or "United" and is not case sensitive. This example should show you how to use it in a tag:</p>
+				<code>&lt;wiggle WORD&gt;Bippity &lt;wiggle CHARACTER&gt;Boppity &lt;wiggle VERTEX&gt;Boo</code><br>
+				<img src="./TextMeshPro_Animator_Help_Guide_files/WigglingExample7.gif">
+			</li>
+		</ul>
+	<p></p>
+	<p>
+	You can also assign modifiers inspectorly. The inspector values will be multiplied by the values specified in the tags. If the values are not specified by tags, they will use the inspector values directly.<br>
+	The wiggle independency value requires the text to be updated. You can update it by clicking "Update".
+	</p>
+	<img src="./TextMeshPro_Animator_Help_Guide_files/WigglingExample8.gif">
+	<h2>Scripting</h2>
+	<p>
+		Simplest way that I can say this is that the function <code>TextMeshAnimator.BeginAnimation(text)</code> is what I suggest the most to call when you trigger a dialog box, and if I ever get to opening, closing transitions in the future, there will be a <code>TextMeshAnimator.EndAnimation()</code> available to close the dialog.
+	</p>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<span style="font-size:8px">hi skawo :&gt;</span>
+</body></html>
