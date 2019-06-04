@@ -1,4 +1,4 @@
-﻿/*	TextMeshPro Animator v0.2 by John10v10, plus a thing or two by Meorge
+﻿/*	TextMeshPro Animator v0.3 by John10v10 (with some by Meorge)
  */
 
 using System.Collections;
@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using TMPro;
+
 public enum TextMeshAnimator_IndependencyType{
 	United,
 	Word,
