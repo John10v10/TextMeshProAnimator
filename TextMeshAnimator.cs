@@ -90,6 +90,12 @@ public class TextMeshAnimator : MonoBehaviour {
 	[SerializeField]
 	public int[] scrollSpeeds;
 
+	// Custom opener/closers
+	[SerializeField]
+	public char openingChar = '<';
+	[SerializeField]
+	public char closingChar = '>';
+
 
 	public struct TextSpeedItem {
 		public int speed;
@@ -162,17 +168,20 @@ public class TextMeshAnimator : MonoBehaviour {
 
 
 		string outputText = "";
-		for (int index = 0; index < inputText.Length; ++index) {
-			if (inputText [index] == '<') {
+		for (int index = 0; index < inputText.Length; index++) {
+			if (inputText [index] == openingChar) {
 				int startTagIndex = index;
 				while (index < inputText.Length) {
-					if (inputText [index++] == '>') {
+
+					if (inputText [index++] == closingChar) {
 						string tag = inputText.Substring (startTagIndex, index - startTagIndex);
-						Debug.Log(tag);
-						if (tag.ToUpper().Contains("COLOR") || tag.ToUpper().Contains("SIZE")) {
-							Debug.Log("THE TAG IS " + tag);
+						Debug.Log("TAG FOUND: " + tag);
+						if (tag.ToUpper().Contains("COLOR") || tag.ToUpper().Contains("SIZE") || tag.ToUpper() == openingChar + "B" + closingChar || tag.ToUpper() == openingChar + "/B" + closingChar || tag.ToUpper() == openingChar + "I" + closingChar || tag.ToUpper() == openingChar + "/I" + closingChar) {
+							Debug.Log("This is a rich-text tag, don't worry about it");
+							if (openingChar != '<' || closingChar != '>') {
+								Debug.LogWarning("These are not normal TextMeshPro tags, so they'll likely show up in the box.");
+							}
 							outputText += tag;
-							
 
 						}
 						//SHAKE
@@ -364,6 +373,7 @@ public class TextMeshAnimator : MonoBehaviour {
 
 							currentScrollSpeed = int.Parse(speed_string);
 						}
+						
 						break;
 					}
 				}
@@ -679,6 +689,7 @@ public class TextMeshAnimatorEditor : Editor
 	SerializedProperty wiggleMinimumDuration;
 	SerializedProperty wiggleIndependency;
 	SerializedProperty charsVisible;
+	SerializedProperty openingChar, closingChar;
 
 	void OnEnable()
 	{
@@ -696,6 +707,9 @@ public class TextMeshAnimatorEditor : Editor
 		wiggleIndependency = serializedObject.FindProperty("wiggleIndependency");
 
 		charsVisible = serializedObject.FindProperty("charsVisible");
+
+		openingChar = serializedObject.FindProperty("openingChar");
+		closingChar = serializedObject.FindProperty("closingChar");
 	}
 
 	public override void OnInspectorGUI()
@@ -711,6 +725,11 @@ public class TextMeshAnimatorEditor : Editor
 		}
 
 		EditorGUILayout.Space ();
+
+		EditorGUILayout.LabelField("Opening/Closing Characters", EditorStyles.boldLabel);
+		EditorGUILayout.PropertyField(openingChar);
+		EditorGUILayout.PropertyField(closingChar);
+		EditorGUILayout.Space();
 
 		EditorGUILayout.LabelField("Text Visibility Properties", EditorStyles.boldLabel);
 		EditorGUILayout.PropertyField (charsVisible);
